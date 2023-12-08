@@ -95,7 +95,7 @@ export async function prepareEdit(
   const branch = getInput('base-branch')
   const filePath =
     getInput('formula-path') || formulaPath(owner, repo, formulaName)
-  const version = tagName.replace(/^v(\d)/, '$1')
+  const version = tagName.match(/(?:\.?)?(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)\.(?:0|[1-9]\d*)(?:-(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*)(?:\.(?:0|[1-9]\d*|\d*[a-zA-Z-][0-9a-zA-Z-]*))*)?(?:\+[0-9a-zA-Z-]+(?:\.[0-9a-zA-Z-]+)*)?$/)?.[0] || tagName
   const downloadUrl =
     getInput('download-url') ||
     tarballForRelease(ctx.repo.owner, ctx.repo.repo, tagName)
